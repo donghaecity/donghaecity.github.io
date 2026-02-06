@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Airtist</title>
+  <meta name="description" content="Airtist - 제작 영상, 팀원 소개, Contact" />
+
+  <style>
+    :root{
+      --bg: #ffffff;
+      --text: #111111;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --shadow: 0 14px 40px rgba(0,0,0,.10);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --maxw: 1160px;
+    }
+    *{ box-sizing: border-box; }
+    html,body{ height: 100%; }
+    body{
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.5;
+    }
+    a{ color: inherit; text-decoration: none; }
+    img{ display:block; max-width:100%; }
+
+    .container{
+      width: min(var(--maxw), calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* HERO */
+    .hero{
+      position: relative;
+      min-height: 420px;
+      display: grid;
+      place-items: center;
+      padding: 72px 0 56px;
+      overflow: hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background: url("./assets/hero-bg.jpg") center/cover no-repeat;
+      filter: saturate(1.05);
+      transform: scale(1.02);
+    }
+    .hero::after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,.35) 0%, rgba(0,0,0,.55) 65%, rgba(0,0,0,.70) 100%);
+    }
+    .hero-inner{
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: #fff;
+      padding: 0 16px;
+    }
+    .hero-logo{
+      width: clamp(138px, 18vw, 210px);
+      height: auto;
+      margin: 0 auto 18px;
+    }
+    .hero-text{
+      font-size: clamp(16px, 2.2vw, 22px);
+      font-weight: 600;
+      letter-spacing: -0.2px;
+      opacity: .95;
+    }
+
+    /* SECTIONS */
+    section{ padding: 76px 0; }
+    .section-title{
+      text-align: center;
+      font-size: clamp(30px, 3.6vw, 46px);
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      margin: 0 0 36px;
+    }
+
+    /* GRID CARDS */
+    .grid3{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    @media (max-width: 980px){
+      .grid3{ grid-template-columns: 1fr; }
+      .hero{ min-height: 360px; }
+      section{ padding: 60px 0; }
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+      transform: translateZ(0);
+      transition: box-shadow .22s ease, transform .22s ease;
+    }
+    .card:hover{
+      box-shadow: var(--shadow);
+      transform: translateY(-2px);
+    }
+
+    .thumb{
+      position: relative;
+      height: 210px;
+      overflow: hidden;
+    }
+    .thumb img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1);
+      transition: transform .28s ease;
+    }
+    .card:hover .thumb img{ transform: scale(1.06); }
+
+    .thumb-overlay{
+      position:absolute; inset:0;
+      display:grid;
+      place-items:center;
+      color:#fff;
+      font-weight: 800;
+      font-size: 26px;
+      letter-spacing: -0.4px;
+      text-shadow: 0 10px 25px rgba(0,0,0,.45);
+      background: linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.45));
+      opacity: 0;
+      transition: opacity .22s ease;
+      pointer-events: none;
+    }
+    .thumb.has-overlay .thumb-overlay{ opacity: 1; }
+
+    .card-body{ padding: 22px 22px 26px; }
+    .card-title{
+      font-size: 30px;
+      font-weight: 900;
+      letter-spacing: -0.8px;
+      margin: 0 0 10px;
+    }
+    .card-desc{
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
+    /* TEAM */
+    .team-avatar{
+      width: 140px;
+      height: 140px;
+      margin: 26px auto 18px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: #0f172a;
+      display: grid;
+      place-items: center;
+    }
+    .team-avatar img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .98;
+    }
+    .team-name{
+      text-align:center;
+      font-size: 28px;
+      font-weight: 900;
+      margin: 0 0 6px;
+      letter-spacing: -0.6px;
+    }
+    .team-role{
+      text-align:center;
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .btn-row{
+      display:flex;
+      justify-content:center;
+      padding-bottom: 28px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-weight: 900;
+      font-size: 16px;
+      border: 0;
+      cursor: pointer;
+      user-select: none;
+      transition: transform .15s ease, filter .15s ease, opacity .15s ease;
+    }
+    .btn:active{ transform: scale(.98); }
+    .btn-youtube{
+      background: #e11d48; /* 레드 느낌 */
+      color: #fff;
+    }
+    .btn-youtube:hover{ filter: brightness(1.06); }
+
+    .btn-disabled{
+      background: #e5e7eb;
+      color: #9ca3af;
+      cursor: not-allowed;
+      opacity: .95;
+    }
+
+    .btn svg{ width: 18px; height: 18px; }
+
+    /* QUOTE / BANNER */
+    .banner{
+      padding: 68px 0;
+      background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.07), transparent 35%),
+                  linear-gradient(180deg, #0b1220, #000);
+      color: #fff;
+    }
+    .banner p{
+      margin: 0;
+      text-align: center;
+      font-size: clamp(18px, 2.2vw, 28px);
+      font-weight: 700;
+      letter-spacing: -0.4px;
+      line-height: 1.8;
+      word-break: keep-all;
+    }
+    .banner strong{ font-weight: 900; }
+
+    /* CONTACT */
+    .contact{
+      padding: 36px 0 56px;
+      text-align: center;
+      color: #6b7280;
+      font-size: 14px;
+      letter-spacing: 0.2px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <!-- 로고 PNG (로컬 파일로 교체) -->
+      <img class="hero-logo" src="./assets/logo.png" alt="Airtist Logo" />
+      <!-- 텍스트 1줄 -->
+      <div class="hero-text">AI로 미디어를 제작합니다</div>
+    </div>
+  </header>
+
+  <!-- 제작 영상 -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">제작 영상</h2>
+
+      <div class="grid3">
+        <!-- 1 -->
+        <article class="card">
+          <div class="thumb">
+            <img src="./assets/production-01.jpg" alt="여행 브이로그" />
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">여행 브이로그</h3>
+            <p class="card-desc">현실과 구분되는 차별화된 여행지를 탐험합니다</p>
+          </div>
+        </article>
+
+        <!-- 2 -->
+        <article class="card">
+          <div class="thumb has-overlay">
+            <img src="./assets/production-02.jpg" alt="영화" />
+            <div class="thumb-overlay">To be Continue</div>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">영화</h3>
+            <p class="card-desc">장르 불문 고퀄리티 영화를 제작합니다</p>
+          </div>
+        </article>
+
+        <!-- 3 -->
+        <article class="card">
+          <div class="thumb has-overlay">
+            <img src="./assets/production-03.jpg" alt="광고" />
+            <div class="thumb-overlay">To be Continue</div>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">광고</h3>
+            <p class="card-desc">비용과 시간을 줄여 고효율 광고 콘텐츠를 제작합니다</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 프로젝트 소개 -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">프로젝트 소개</h2>
+
+      <div class="grid3">
+        <!-- 팀원 1 (유튜브 링크 활성) -->
+        <article class="card">
+          <div class="team-avatar">
+            <img src="./assets/team-01.png" alt="최나현" />
+          </div>
+          <div class="card-body" style="padding-top: 0;">
+            <h3 class="team-name">최나현</h3>
+            <p class="team-role">여행 브이로그</p>
+
+            <div class="btn-row">
+              <!-- URL만 교체하세요 -->
+              <a class="btn btn-youtube"
+                 href="https://youtube.com/@nahyeon-airtist?si=inC0Y-RuxdBuY4M_"
+                 target="_blank" rel="noopener noreferrer"
+                 aria-label="유튜브 채널 열기">
+                <!-- 유튜브 아이콘 (SVG) -->
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.5 12 4.5 12 4.5s-5.7 0-7.5.6A3 3 0 0 0 2.4 7.2 31.5 31.5 0 0 0 2 12a31.5 31.5 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.6 7.5.6 7.5.6s5.7 0 7.5-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 22 12a31.5 31.5 0 0 0-.4-4.8ZM10 15.3V8.7L16 12l-6 3.3Z"/>
+                </svg>
+                유튜브 채널
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 팀원 2 (추후 공개 / 버튼 비활성) -->
+        <article class="card">
+          <div class="team-avatar">
+            <img src="./assets/team-tba.png" alt="추후 공개" />
+          </div>
+          <div class="card-body" style="padding-top: 0;">
+            <h3 class="team-name">추후 공개</h3>
+            <p class="team-role">To be announced</p>
+
+            <div class="btn-row">
+              <button class="btn btn-disabled" type="button" disabled>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M21 8a2 2 0 0 0-2-2H5A2 2 0 0 0 3 8v8a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8Zm-11 7V9l6 3-6 3Z"/>
+                </svg>
+                추후 공개
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 팀원 3 (추후 공개 / 버튼 비활성) -->
+        <article class="card">
+          <div class="team-avatar">
+            <img src="./assets/team-tba.png" alt="추후 공개" />
+          </div>
+          <div class="card-body" style="padding-top: 0;">
+            <h3 class="team-name">추후 공개</h3>
+            <p class="team-role">To be announced</p>
+
+            <div class="btn-row">
+              <button class="btn btn-disabled" type="button" disabled>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M21 8a2 2 0 0 0-2-2H5A2 2 0 0 0 3 8v8a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8Zm-11 7V9l6 3-6 3Z"/>
+                </svg>
+                추후 공개
+              </button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 문장 배너 -->
+  <section class="banner">
+    <div class="container">
+      <p>
+        누구나 한 번쯤은 머릿속에만 남겨둔 장면과 이야기가 있다고 생각합니다.
+        <strong>Airtist</strong> 팀은 그 상상을 영상으로 제작하고
+        장기적으로 SW 개발까지 그리고 있습니다.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <footer class="contact">
+    <div class="container">
+      CONTACT : airtistbusiness00@google.com
+    </div>
+  </footer>
+
+</body>
+</html>
