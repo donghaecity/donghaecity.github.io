@@ -89,7 +89,36 @@
       font-size: clamp(30px, 3.6vw, 46px);
       font-weight: 800;
       letter-spacing: -0.6px;
+      margin: 0;
+    }
+
+    .section-head{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
       margin: 0 0 36px;
+      flex-wrap: wrap;
+    }
+
+    .section-more{
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--muted);
+      transition: opacity .18s ease, transform .18s ease;
+      white-space: nowrap;
+    }
+    .section-more:hover{
+      opacity: .8;
+      transform: translateY(-1px);
+    }
+    .section-more svg{
+      width: 15px;
+      height: 15px;
+      flex: 0 0 auto;
     }
 
     /* GRID CARDS */
@@ -102,6 +131,11 @@
       .grid3{ grid-template-columns: 1fr; }
       .hero{ min-height: 360px; }
       section{ padding: 60px 0; }
+
+      .section-head{
+        flex-direction: column;
+        gap: 8px;
+      }
     }
 
     .card{
@@ -241,6 +275,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 10px;
       min-height: 68px;
       width: 100%;
       border-radius: 999px;
@@ -257,6 +292,11 @@
       transform: translateY(-2px);
       box-shadow: var(--shadow);
       border-color: #d1d5db;
+    }
+    .blog-btn svg{
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
     }
     .blog-btn-disabled{
       background: #f9fafb;
@@ -420,23 +460,36 @@
   <!-- 기술 블로그 -->
   <section>
     <div class="container">
-      <h2 class="section-title">기술 블로그</h2>
+      <div class="section-head">
+        <h2 class="section-title">기술 블로그</h2>
+        <a class="section-more"
+           href="https://airtist-story.tistory.com"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="기술 블로그 더보기">
+          더보기
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M7 17L17 7"></path>
+            <path d="M9 7h8v8"></path>
+          </svg>
+        </a>
+      </div>
 
       <div class="blog-wrap">
         <a class="blog-btn"
            href="https://airtist-story.tistory.com/3"
            target="_blank"
-           rel="noopener noreferrer">
-          나현로그 EP.001 회고
+           rel="noopener noreferrer"
+           aria-label="나현로그 EP.001 회고 열기">
+          <span>나현로그 EP.001 회고</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M7 17L17 7"></path>
+            <path d="M9 7h8v8"></path>
+          </svg>
         </a>
 
-        <button class="blog-btn blog-btn-disabled" type="button" disabled aria-disabled="true">
-          
-        </button>
-
-        <button class="blog-btn blog-btn-disabled" type="button" disabled aria-disabled="true">
-          
-        </button>
+        <button class="blog-btn blog-btn-disabled" type="button" disabled aria-disabled="true"></button>
+        <button class="blog-btn blog-btn-disabled" type="button" disabled aria-disabled="true"></button>
       </div>
     </div>
   </section>
