@@ -272,12 +272,14 @@
       gap: 16px;
     }
     .blog-btn{
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
       min-height: 68px;
       width: 100%;
+      padding: 0 84px 0 24px;
       border-radius: 999px;
       border: 1px solid var(--border);
       background: #fff;
@@ -306,6 +308,17 @@
       pointer-events: none;
       box-shadow: none;
     }
+    .blog-date{
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 13px;
+      font-weight: 700;
+      color: #9ca3af;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
 
     /* QUOTE / BANNER */
     .banner{
@@ -332,6 +345,18 @@
       color: #6b7280;
       font-size: 14px;
       letter-spacing: 0.2px;
+    }
+
+    @media (max-width: 640px){
+      .blog-btn{
+        min-height: 64px;
+        padding: 0 72px 0 18px;
+        font-size: 16px;
+      }
+      .blog-date{
+        right: 18px;
+        font-size: 11px;
+      }
     }
   </style>
 </head>
@@ -457,62 +482,53 @@
     </div>
   </section>
 
-<!-- 기술 블로그 -->
-<section>
-  <div class="container">
-    <div class="section-head">
-      <h2 class="section-title">기술 블로그</h2>
-      <a class="section-more"
-         href="https://airtist-story.tistory.com"
-         target="_blank"
-         rel="noopener noreferrer"
-         aria-label="기술 블로그 더보기">
-        더보기
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path d="M7 17L17 7"></path>
-          <path d="M9 7h8v8"></path>
-        </svg>
-      </a>
+  <!-- 기술 블로그 -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">기술 블로그</h2>
+        <a class="section-more"
+           href="https://airtist-story.tistory.com"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="기술 블로그 더보기">
+          더보기
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M7 17L17 7"></path>
+            <path d="M9 7h8v8"></path>
+          </svg>
+        </a>
+      </div>
+
+      <div class="blog-wrap">
+
+        <a class="blog-btn"
+           href="https://airtist-story.tistory.com/4"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="나현로그 EP.002 회고 열기">
+          <span>나현로그 EP.002 회고</span>
+          <span class="blog-date">2026.03.26</span>
+        </a>
+
+        <a class="blog-btn"
+           href="https://airtist-story.tistory.com/3"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="나현로그 EP.001 회고 열기">
+          <span>나현로그 EP.001 회고</span>
+          <span class="blog-date">2026.03.15</span>
+        </a>
+
+        <button class="blog-btn blog-btn-disabled"
+                type="button"
+                disabled
+                aria-disabled="true">
+        </button>
+
+      </div>
     </div>
-
-    <div class="blog-wrap">
-
-      <!-- 1. EP.002 (최상단) -->
-      <a class="blog-btn"
-         href="https://airtist-story.tistory.com/4"
-         target="_blank"
-         rel="noopener noreferrer"
-         aria-label="나현로그 EP.002 회고 열기">
-        <span>나현로그 EP.002 회고</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M7 17L17 7"></path>
-          <path d="M9 7h8v8"></path>
-        </svg>
-      </a>
-
-      <!-- 2. 기존 EP.001 -->
-      <a class="blog-btn"
-         href="https://airtist-story.tistory.com/3"
-         target="_blank"
-         rel="noopener noreferrer"
-         aria-label="나현로그 EP.001 회고 열기">
-        <span>나현로그 EP.001 회고</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M7 17L17 7"></path>
-          <path d="M9 7h8v8"></path>
-        </svg>
-      </a>
-
-      <!-- 3. 빈 버튼 -->
-      <button class="blog-btn blog-btn-disabled"
-              type="button"
-              disabled
-              aria-disabled="true">
-      </button>
-
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- 문장 배너 -->
   <section class="banner">
